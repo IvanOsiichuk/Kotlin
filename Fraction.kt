@@ -2,8 +2,8 @@ package fraction
 import kotlin.math.abs
 
 /** Найбільний спільний дільник [алгоритм Евкліда]
- * @property n чисельник
- * @property d знаменник */
+ * @param n чисельник
+ * @param d знаменник */
 fun gcd(n: Int, d: Int): Int {
     var (a, b) = listOf<Int>(n, d)
     while (a != 0 && b != 0) {
@@ -19,8 +19,8 @@ fun gcd(n: Int, d: Int): Int {
 }
 
 /** Найменший спільний знаменник
- * @property n чисельник
- * @property d знаменник */
+ * @param n чисельник
+ * @param d знаменник */
 fun lcm(n: Int, d: Int) = abs(n * d) / gcd(n, d)
 
 class Fraction (var numerator: Int = 1, _denominator: Int = 1) {
@@ -33,7 +33,7 @@ class Fraction (var numerator: Int = 1, _denominator: Int = 1) {
         }
 
     /** Вторинний конструктор
-     * @property exp Вираз вигляду "1/1" */
+     * @param exp Вираз вигляду "1/1" */
     constructor(exp: String) : this() {
         val args = exp.split('/').map { it.toIntOrNull() }
         if (args.size == 2) {
@@ -43,13 +43,13 @@ class Fraction (var numerator: Int = 1, _denominator: Int = 1) {
     }
 
     /** Спільні найменше кратне і найбільший дільник відповідно
-     * @property x інший дріб*/
+     * @param x інший дріб*/
     fun denominatorCommon(x: Fraction) =
         Pair<Int, Int>(lcm(denominator, x.denominator),
             gcd(denominator, x.denominator))
 
     /** Скорочення дробів
-     * @property x інший дріб */
+     * @param x інший дріб */
     fun reduce(x: Fraction): Pair<Fraction, Fraction> {
         val upCommon = gcd(numerator, x.denominator)
         val downCommon = gcd(denominator, x.numerator)
@@ -64,8 +64,8 @@ class Fraction (var numerator: Int = 1, _denominator: Int = 1) {
     }
 
     /** Допоміжна функція для операцій додавання-віднімання
-     * @property x інший дріб
-     * @property sign функція, що +/- два операнди */
+     * @param x інший дріб
+     * @param sign функція, що +/- два операнди */
     private fun arithmetic(x: Fraction, sign: (a: Int, b: Int) -> Int):Fraction {
         if (denominator == x.denominator)
             return Fraction(numerator + x.numerator, denominator).reduce()
