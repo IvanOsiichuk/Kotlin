@@ -6,11 +6,8 @@ import kotlin.math.abs
  * @param d знаменник */
 fun gcd(n: Int, d: Int): Int {
     var (a, b) = listOf<Int>(n, d)
-    while (a != 0 && b != 0) {
-        if (a > b)
-            a %= b
-        else
-            b %= a
+    while (b != 0) {
+        a = b.also { b = a % b }
     }
 
 //    while (b != 0)
@@ -23,6 +20,8 @@ fun gcd(n: Int, d: Int): Int {
  * @param d знаменник */
 fun lcm(n: Int, d: Int) = abs(n * d) / gcd(n, d)
 
+
+/** Дріб */
 class Fraction (var numerator: Int = 1, _denominator: Int = 1) {
     var denominator = 1 // знаменник
         set(value) {
