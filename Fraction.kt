@@ -10,8 +10,6 @@ fun gcd(n: Int, d: Int): Int {
         a = b.also { b = a % b }
     }
 
-//    while (b != 0)
-
     return a + b
 }
 
@@ -19,7 +17,6 @@ fun gcd(n: Int, d: Int): Int {
  * @param n чисельник
  * @param d знаменник */
 fun lcm(n: Int, d: Int) = abs(n * d) / gcd(n, d)
-
 
 /** Дріб */
 class Fraction (var numerator: Int = 1, _denominator: Int = 1) {
